@@ -14,10 +14,12 @@ network_check
 update_os
 
 if [[ -z "${var_openai_base_url:-}" ]]; then
-  var_openai_base_url=$(prompt_input "OpenAI-compatible API base URL:" "https://router.huggingface.co/v1" 120)
+  read -r -p "${TAB3}OpenAI-compatible base URL [https://router.huggingface.co/v1]: " var_openai_base_url || true
 fi
+var_openai_base_url="${var_openai_base_url:-https://router.huggingface.co/v1}"
 if [[ -z "${var_openai_api_key:-}" ]]; then
-  var_openai_api_key=$(prompt_password "API key for that endpoint (Enter for none):" "" 120)
+  read -r -s -p "${TAB3}API key for that endpoint (Enter for none): " var_openai_api_key || true
+  echo
 fi
 
 msg_info "Installing Dependencies"
