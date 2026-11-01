@@ -1,0 +1,63 @@
+{
+  "name": "Hugging Face Chat UI",
+  "slug": "huggingface-chat-ui",
+  "categories": [20],
+  "date_created": "2026-11-01",
+  "type": "ct",
+  "updateable": true,
+  "privileged": false,
+  "interface_port": 443,
+  "documentation": "https://huggingface.co/docs/chat-ui",
+  "website": "https://huggingface.co/chat",
+  "repository": "https://github.com/huggingface/chat-ui",
+  "logo": "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/webp/hugging-face.webp",
+  "description": "Chat UI is the open-source chat interface that powers HuggingChat. It works with any OpenAI-compatible API, such as Hugging Face Inference Providers, Ollama, llama.cpp or OpenRouter, and lists the models the endpoint offers. Conversations, settings and uploaded files are stored in MongoDB.",
+  "install_methods": [
+    {
+      "type": "default",
+      "script": "ct/huggingface-chat-ui.sh",
+      "config_path": "/opt/huggingface-chat-ui.env",
+      "resources": {
+        "cpu": 2,
+        "ram": 4096,
+        "hdd": 10,
+        "os": "Debian",
+        "version": "13"
+      }
+    }
+  ],
+  "default_credentials": {
+    "username": null,
+    "password": null
+  },
+  "app_vars": [
+    {
+      "name": "var_openai_base_url",
+      "label": "OpenAI-compatible API base URL",
+      "type": "text",
+      "default": "https://router.huggingface.co/v1",
+      "help": "Any OpenAI-compatible /v1 endpoint, e.g. http://<ollama-host>:11434/v1. Can be changed later in /opt/huggingface-chat-ui.env"
+    },
+    {
+      "name": "var_openai_api_key",
+      "label": "API key",
+      "type": "password",
+      "secret": true,
+      "help": "Leave empty if the endpoint needs no key"
+    }
+  ],
+  "notes": [
+    {
+      "text": "Open https://<IP> and accept the self-signed certificate.",
+      "type": "info"
+    },
+    {
+      "text": "To change the model provider, edit OPENAI_BASE_URL and OPENAI_API_KEY in /opt/huggingface-chat-ui.env, then run systemctl restart huggingface-chat-ui.",
+      "type": "info"
+    },
+    {
+      "text": "There is no login by default: anyone who can reach the container can chat using your API key. Configure OpenID in /opt/huggingface-chat-ui.env to require sign-in.",
+      "type": "warning"
+    }
+  ]
+}
