@@ -26,7 +26,7 @@ $STD apt install -y \
   nginx
 msg_ok "Installed Dependencies"
 
-MONGO_VERSION="7.0" setup_mongodb
+MONGO_VERSION="8.0" setup_mongodb
 NODE_VERSION="24" NODE_MODULE="dotenv-cli" setup_nodejs
 fetch_and_deploy_gh_release "huggingface-chat-ui" "huggingface/chat-ui" "tarball"
 
